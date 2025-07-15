@@ -19,7 +19,7 @@ A production-ready ntfy server deployment for push notifications, hosted on Fly.
    ```bash
    fly auth login
    fly launch --no-deploy
-   fly volumes create ntfy_data --size 1 --region sjc
+   fly volumes create ntfy_data --size 1 --region nrt
    fly deploy
    ```
 
