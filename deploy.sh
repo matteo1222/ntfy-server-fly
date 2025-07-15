@@ -44,7 +44,7 @@ fi
 # Check if volume exists
 if ! flyctl volumes list | grep -q "ntfy_data"; then
     echo "💾 Creating persistent volume..."
-    flyctl volumes create ntfy_data --size 1 --region sjc
+    flyctl volumes create ntfy_data --size 1 --region nrt
 else
     echo "✅ Volume ntfy_data already exists"
 fi
