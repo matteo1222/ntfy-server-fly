@@ -1,7 +1,7 @@
 # Fly.io configuration for ntfy server
 # Documentation: https://fly.io/docs/reference/configuration/
 
-app = "your-app-name-ntfy"  # Change this to your desired app name
+app = "ntfy-server"  # Change this to your desired app name
 primary_region = "nrt"  # Change to your preferred region
 
 [build]
