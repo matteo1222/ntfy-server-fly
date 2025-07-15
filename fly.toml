@@ -1,0 +1,39 @@
+# Fly.io configuration for ntfy server
+# Documentation: https://fly.io/docs/reference/configuration/
+
+app = "your-app-name-ntfy"  # Change this to your desired app name
+primary_region = "nrt"  # Change to your preferred region
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  TZ = "UTC"
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+  # Health check configuration
+  [[http_service.checks]]
+    interval = "30s"
+    timeout = "10s"
+    grace_period = "5s"
+    method = "GET"
+    path = "/v1/health"
+    protocol = "http"
+    tls_skip_verify = false
+
+[mounts]
+  source = "ntfy_data"
+  destination = "/var/cache/ntfy"
+
+# VM configuration
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256

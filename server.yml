@@ -1,0 +1,74 @@
+# ntfy server configuration
+# Documentation: https://docs.ntfy.sh/config/
+
+# Base URL for your ntfy server (change this to your actual domain)
+base-url: "https://your-app-name-ntfy.fly.dev"
+
+# Listen on all interfaces, port 80 (default for Fly.io)
+listen-http: ":80"
+
+# Cache configuration
+cache-file: "/var/cache/ntfy/cache.db"
+cache-duration: "12h"
+cache-startup-queries: "pragma journal_mode=WAL; pragma synchronous=normal; pragma temp_store=memory;"
+
+# Attachment configuration
+attachment-cache-dir: "/var/cache/ntfy/attachments"
+attachment-total-size-limit: "5G"
+attachment-file-size-limit: "15M"
+attachment-expiry-duration: "3h"
+
+# Rate limiting configuration
+visitor-request-limit-burst: 60
+visitor-request-limit-replenish: "5s"
+visitor-message-limit-burst: 60
+visitor-message-limit-replenish: "5s"
+visitor-subscription-limit-burst: 30
+visitor-subscription-limit-replenish: "1m"
+
+# Global message limit
+global-topic-limit: 15000
+visitor-attachment-total-size-limit: "100M"
+visitor-attachment-daily-bandwidth-limit: "500M"
+
+# Authentication (disabled by default)
+# Uncomment and configure if you want to enable authentication
+# auth-file: "/var/cache/ntfy/user.db"
+# auth-default-access: "deny-all"
+
+# Web UI configuration
+enable-signup: false
+enable-login: false
+enable-reservations: false
+
+# Logging configuration
+log-level: "INFO"
+log-format: "text"
+
+# CORS configuration (allow all origins for flexibility)
+cors-allowed-origins: ["*"]
+
+# Disable web root serving (we only want the API)
+web-root: "disable"
+
+# Metrics (uncomment to enable)
+# enable-metrics: true
+# metrics-listen-http: ":9090"
+
+# Optional: Email configuration for password resets (if auth is enabled)
+# smtp-sender-addr: "your-email@example.com"
+# smtp-sender-user: "your-email@example.com"
+# smtp-sender-pass: "your-password"
+# smtp-server-listen: ":25"
+# smtp-server-domain: "your-domain.com"
+
+# Optional: Twilio configuration for SMS notifications
+# twilio-account: "your-account-sid"
+# twilio-auth-token: "your-auth-token"
+# twilio-phone-number: "+1234567890"
+
+# Optional: Firebase configuration for FCM
+# firebase-key-file: "/path/to/key.json"
+
+# Optional: Upstream base URL (if you want to proxy to another ntfy server)
+# upstream-base-url: "https://ntfy.sh"

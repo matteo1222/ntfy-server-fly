@@ -1,0 +1,32 @@
+name: Deploy to Fly.io
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy ntfy server
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Fly.io CLI
+      uses: superfly/flyctl-actions/setup-flyctl@master
+      
+    - name: Deploy to Fly.io
+      run: flyctl deploy --remote-only
+      env:
+        FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        
+    - name: Health check
+      run: |
+        echo "Waiting for deployment to be healthy..."
+        sleep 30
+        curl -f ${{ secrets.NTFY_BASE_URL }}/v1/health || exit 1
+        echo "✅ Deployment successful and healthy!"
