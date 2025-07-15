@@ -2,10 +2,10 @@
 # Documentation: https://docs.ntfy.sh/config/
 
 # Base URL for your ntfy server (change this to your actual domain)
-base-url: "https://your-app-name-ntfy.fly.dev"
+base-url: "https://ntfy-server.fly.dev"
 
-# Listen on all interfaces, port 80 (default for Fly.io)
-listen-http: ":80"
+# Listen on all interfaces, port 8080 (non-privileged)
+listen-http: ":8080"
 
 # Cache configuration
 cache-file: "/var/cache/ntfy/cache.db"
@@ -71,4 +71,4 @@ web-root: "disable"
 # firebase-key-file: "/path/to/key.json"
 
 # Optional: Upstream base URL (if you want to proxy to another ntfy server)
-# upstream-base-url: "https://ntfy.sh"
+# upstream-base-url: "https://ntfy-server.fly.dev"
